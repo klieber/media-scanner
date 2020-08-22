@@ -113,11 +113,7 @@ sub mov_scanner {
   my ($outpath,$outfile) = &get_outpath($t,$extension);
   if ($opts{o} || ! -e "$outpath/$outfile") {
     print "new: $outpath/$outfile\n";
-    my $rotated = &rotate_video($filename,$WORKDIR,$outfile);
-    &copy_file($t,$rotated,$outpath,$outfile);
-    if ($rotated ne $filename) {
-      system("rm \"$rotated\"");
-    }
+    &copy_file($t,$filename,$outpath,$outfile);
     if ($opts{m}) {
       print "removing $filename\n";
       system("rm \"$filename\"");
